@@ -186,7 +186,7 @@ function Enemy(I) {
 		c.arc(this.x, this.y, 20, 0, Math.PI*2);
 		c.closePath();
 		c.fill();
-		if (time > 6) {
+		if (time % 2 === 0) {
 			score += 1;
 		}
 	}
