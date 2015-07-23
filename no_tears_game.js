@@ -10,6 +10,7 @@ var c = $( 'canvas' ).get(0).getContext("2d");
 
 //Game loop
 var FPS = 30;
+var score = 0;
 var time = 0;
 setInterval(function() {
 	update();
@@ -59,6 +60,7 @@ function update() {
 
 function draw() {
 	c.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+	drawScore();
 	player.draw();
 	playerBullets.forEach(function(bullet) {
 		bullet.draw();
@@ -184,6 +186,9 @@ function Enemy(I) {
 		c.arc(this.x, this.y, 20, 0, Math.PI*2);
 		c.closePath();
 		c.fill();
+		if (time > 6) {
+			score += 1;
+		}
 	}
 
 	I.width = 32;
@@ -235,6 +240,11 @@ function handleCollisions() {
       player.explode();
     }
   });
+}
+
+// Draw score
+function drawScore() {
+	c.fillText("Score: " + score, 30, 10);
 }
 
 // End game
